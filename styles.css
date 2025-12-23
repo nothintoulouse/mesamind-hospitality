@@ -44,9 +44,9 @@ body {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
-    padding: 0 var(--spacing-md);
+    padding: 0 var(--spacing-lg);
 }
 
 /* Typography */
@@ -104,20 +104,27 @@ a:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
 
 .logo {
     font-family: var(--font-heading);
     font-size: 1.8rem;
     font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
 }
 
-.logo-mesa {
-    color: var(--sage-green);
+.logo-image {
+    height: 40px;
+    width: auto;
 }
 
-.logo-mind {
-    color: var(--mesa-clay);
+.logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
 }
 
 .logo-divider {
@@ -141,6 +148,7 @@ a:hover {
     font-weight: 500;
     color: var(--charcoal);
     transition: color 0.3s ease;
+    white-space: nowrap;
 }
 
 .main-nav a:hover {
@@ -234,29 +242,242 @@ section {
     background-color: var(--soft-stone);
 }
 
+/* Content Wrapper for centered text */
+.for-who .container, .problem .container, 
+.difference .container, .services-preview .container, 
+.trust .container {
+    max-width: 900px;
+}
+
 .section-intro {
     font-size: 1.2rem;
     margin-bottom: var(--spacing-md);
     color: var(--charcoal);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .closing-statement {
     font-size: 1.2rem;
     margin-top: var(--spacing-md);
     color: var(--charcoal);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Background Images - Full Opacity with Text Overlays */
+.hero-with-bg {
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+}
+
+.hero-with-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    background-color: rgba(255, 255, 255, 0.85);
+    z-index: 1;
+}
+
+/* Fallback for browsers without backdrop-filter support */
+@supports not (backdrop-filter: blur(8px)) {
+    .hero-with-bg::before {
+        background-color: rgba(255, 255, 255, 0.85);
+    }
+}
+
+.hero-with-bg .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Full Image Section - No Text Overlay */
+.image-section {
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    background-attachment: scroll;
+}
+
+/* Text Section with Subtle Background */
+.section-with-bg {
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.section-with-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    background-color: rgba(255, 255, 255, 0.35);
+    z-index: 1;
+}
+
+/* Fallback for browsers without backdrop-filter support */
+@supports not (backdrop-filter: blur(8px)) {
+    .section-with-bg::before {
+        background-color: rgba(255, 255, 255, 0.65);
+    }
+}
+
+.section-with-bg .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Problem section: Zoom to sky and use white text with dark overlay */
+.section-with-bg[data-image="problem"] {
+    background-position: center top;
+}
+
+.problem.section-with-bg::before {
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+@supports not (backdrop-filter: blur(3px)) {
+    .problem.section-with-bg::before {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+}
+
+.problem.section-with-bg h2,
+.problem.section-with-bg p,
+.problem.section-with-bg li {
+    color: white;
+}
+
+.problem.section-with-bg .problem-list li::before {
+    color: white;
+}
+
+/* Difference section: White text for moody atmosphere */
+.difference.section-with-bg h2,
+.difference.section-with-bg p,
+.difference.section-with-bg li {
+    color: white;
+}
+
+.difference.section-with-bg .value-statements {
+    background-color: rgba(242, 240, 235, 0.15);
+    border-left-color: white;
+}
+
+.difference.section-with-bg .difference-list li::before {
+    color: white;
+}
+
+/* Responsive Background Images - Load appropriate size for device */
+@media (max-width: 768px) {
+    /* Mobile: Use -small.webp versions (~800px wide) */
+    .hero-with-bg[data-image="hero"],
+    .image-section[data-image="hero"] {
+        background-image: url('assets/images/hero-small.webp');
+    }
+    .section-with-bg[data-image="problem"],
+    .image-section[data-image="problem"] {
+        background-image: url('assets/images/problem-small.webp');
+    }
+    .section-with-bg[data-image="difference"],
+    .image-section[data-image="difference"] {
+        background-image: url('assets/images/difference-small.webp');
+    }
+    .image-section[data-image="break1"] {
+        background-image: url('assets/images/break1-small.webp');
+    }
+    .image-section[data-image="break2"] {
+        background-image: url('assets/images/break2-small.webp');
+    }
+    .section-with-bg[data-image="glamping-dome"] {
+        background-image: url('assets/images/glamping-dome-small.webp');
+    }
+    
+    .image-section {
+        height: 250px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1200px) {
+    /* Tablet: Use -medium.webp versions (~1200px wide) */
+    .hero-with-bg[data-image="hero"],
+    .image-section[data-image="hero"] {
+        background-image: url('assets/images/hero-medium.webp');
+    }
+    .section-with-bg[data-image="problem"],
+    .image-section[data-image="problem"] {
+        background-image: url('assets/images/problem-medium.webp');
+    }
+    .section-with-bg[data-image="difference"],
+    .image-section[data-image="difference"] {
+        background-image: url('assets/images/difference-medium.webp');
+    }
+    .image-section[data-image="break1"] {
+        background-image: url('assets/images/break1-medium.webp');
+    }
+    .image-section[data-image="break2"] {
+        background-image: url('assets/images/break2-medium.webp');
+    }
+    .section-with-bg[data-image="glamping-dome"] {
+        background-image: url('assets/images/glamping-dome-medium.webp');
+    }
+}
+
+@media (min-width: 1201px) {
+    /* Desktop: Use -large.webp versions (~1920px wide) */
+    .hero-with-bg[data-image="hero"],
+    .image-section[data-image="hero"] {
+        background-image: url('assets/images/hero-large.webp');
+    }
+    .section-with-bg[data-image="problem"],
+    .image-section[data-image="problem"] {
+        background-image: url('assets/images/problem-large.webp');
+    }
+    .section-with-bg[data-image="difference"],
+    .image-section[data-image="difference"] {
+        background-image: url('assets/images/difference-large.webp');
+    }
+    .image-section[data-image="break1"] {
+        background-image: url('assets/images/break1-large.webp');
+    }
+    .image-section[data-image="break2"] {
+        background-image: url('assets/images/break2-large.webp');
+    }
+    .section-with-bg[data-image="glamping-dome"] {
+        background-image: url('assets/images/glamping-dome-large.webp');
+    }
 }
 
 /* Lists */
 .property-types, .problem-list, .difference-list, .services-list {
     list-style: none;
-    margin: var(--spacing-md) 0;
+    margin: var(--spacing-md) auto;
+    max-width: 700px;
+    padding-left: var(--spacing-md);
 }
 
 .property-types li, .problem-list li, 
 .difference-list li, .services-list li {
     padding: var(--spacing-sm);
     margin-bottom: var(--spacing-xs);
-    padding-left: var(--spacing-md);
+    padding-left: var(--spacing-lg);
     position: relative;
 }
 
@@ -266,7 +487,7 @@ section {
     color: var(--sage-green);
     font-size: 1.5rem;
     position: absolute;
-    left: 0;
+    left: var(--spacing-sm);
 }
 
 /* Value Statements */
@@ -405,7 +626,74 @@ section {
     color: var(--desert-sand);
 }
 
-/* Responsive Design */
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 0.5rem;
+    background: none;
+    border: none;
+    z-index: 1001;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: var(--charcoal);
+    margin: 3px 0;
+    transition: 0.3s;
+}
+
+/* Responsive Design - Calculated Breakpoint
+   Logo width: ~320px (logo image + divider + "Hospitality")
+   Nav width: ~700px (5 links with padding and gaps)
+   Container padding: 64px (2rem each side)
+   Total needed: ~1084px
+   Breakpoint: 1100px to be safe
+*/
+@media (max-width: 1100px) {
+    body {
+        overflow-x: hidden;
+    }
+    
+    .site-header .container {
+        padding: 0 var(--spacing-md);
+    }
+    
+    .main-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: white;
+        flex-direction: column;
+        padding: var(--spacing-md);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        width: 100%;
+    }
+    
+    .main-nav.active {
+        display: flex;
+    }
+    
+    .main-nav a {
+        padding: var(--spacing-sm) 0;
+        border-bottom: 1px solid var(--soft-stone);
+        width: 100%;
+    }
+    
+    .hamburger {
+        display: flex;
+        position: absolute;
+        right: var(--spacing-md);
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
+
 @media (max-width: 768px) {
     h1 {
         font-size: 2.5rem;
@@ -415,16 +703,6 @@ section {
         font-size: 1.8rem;
     }
     
-    .site-header .container {
-        flex-direction: column;
-        gap: var(--spacing-md);
-    }
-    
-    .main-nav {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
     .footer-content {
         flex-direction: column;
         gap: var(--spacing-lg);
@@ -432,6 +710,39 @@ section {
     
     section {
         padding: var(--spacing-lg) 0;
+    }
+    
+    /* Better mobile text spacing */
+    .container {
+        padding: 0 var(--spacing-md);
+    }
+    
+    .section-intro, .closing-statement {
+        max-width: 100%;
+        padding: 0 var(--spacing-sm);
+    }
+    
+    .property-types, .problem-list, .difference-list, .services-list {
+        max-width: 100%;
+        padding-left: 0;
+        padding-right: var(--spacing-sm);
+    }
+    
+    .property-types li, .problem-list li, 
+    .difference-list li, .services-list li {
+        padding-left: var(--spacing-md);
+    }
+    
+    .logo {
+        font-size: 1.5rem;
+    }
+    
+    .logo-image {
+        height: 32px;
+    }
+    
+    .site-header .container {
+        padding: 0 var(--spacing-sm);
     }
 }
 

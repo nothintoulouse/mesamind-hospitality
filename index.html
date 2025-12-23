@@ -15,11 +15,18 @@
     <header class="site-header">
         <div class="container">
             <div class="logo">
-                <span class="logo-mesa">MESA</span><span class="logo-mind">MIND</span>
+                <a href="index.html">
+                    <img src="assets/images/mesamind-logo.svg" alt="MesaMind Logo" class="logo-image">
+                </a>
                 <span class="logo-divider">|</span>
                 <span class="logo-hospitality">Hospitality</span>
             </div>
-            <nav class="main-nav">
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="main-nav" id="mainNav">
                 <a href="#services">Services</a>
                 <a href="about.html">About</a>
                 <a href="starter-kit.html" class="nav-cta">Free Starter Kit</a>
@@ -30,7 +37,7 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero hero-with-bg" data-image="hero">
         <div class="container">
             <h1>Calm, ethical AI consulting for independent hospitality.</h1>
             <p class="hero-subheadline">We help boutique hotels, inns, glamping operators, and independent stays use AI intentionally—reducing operational drag, improving guest communication, and strengthening brand consistency without enterprise bloat or tech hype.</p>
@@ -40,6 +47,9 @@
             </div>
         </div>
     </section>
+
+    <!-- Image Break: Breakfast Tray -->
+    <div class="image-section" data-image="break1"></div>
 
     <!-- Who This Is For -->
     <section class="for-who">
@@ -58,7 +68,7 @@
     </section>
 
     <!-- The Problem -->
-    <section class="problem">
+    <section class="problem section-with-bg" data-image="problem">
         <div class="container">
             <h2>Hospitality is human. Operations are not.</h2>
             <p class="section-intro">Most independent properties face the same quiet friction:</p>
@@ -73,8 +83,11 @@
         </div>
     </section>
 
+    <!-- Image Break: Desert Glamping -->
+    <div class="image-section" data-image="break2"></div>
+
     <!-- What Makes Us Different -->
-    <section class="difference">
+    <section class="difference section-with-bg" data-image="glamping-dome">
         <div class="container">
             <h2>AI as a support system—not a personality.</h2>
             <p class="section-intro">MesaMind | Hospitality applies AI where it actually helps:</p>
@@ -158,7 +171,7 @@
             <div class="footer-content">
                 <div class="footer-brand">
                     <div class="logo">
-                        <span class="logo-mesa">MESA</span><span class="logo-mind">MIND</span>
+                        <img src="assets/images/mesamind-logo.svg" alt="MesaMind Logo" class="logo-image">
                         <span class="logo-divider">|</span>
                         <span class="logo-hospitality">Hospitality</span>
                     </div>
@@ -176,5 +189,22 @@
             </div>
         </div>
     </footer>
+    
+    <script>
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const mainNav = document.getElementById('mainNav');
+        
+        hamburger.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !mainNav.contains(e.target)) {
+                mainNav.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>
